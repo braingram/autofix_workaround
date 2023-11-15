@@ -1,0 +1,17 @@
+name: Test
+
+on:
+  pull_request_target:
+    types: [opened, reopened, edited, labeled, unlabeled]
+    branches:
+      - main
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
