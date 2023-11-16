@@ -1,0 +1,20 @@
+name: PR Target Test 2
+
+on:
+  pull_request_target:
+    types: [opened, reopened, edited, labeled, unlabeled]
+    branches:
+      - main
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+      - name: Setup Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Run code
+        run: python kenny_loggins_would_be_proud.py
