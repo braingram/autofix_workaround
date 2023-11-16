@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,5 +25,5 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - name: yoink
-        run: python -c "import sys; print(sys.argv)"  ${{ secrets.PYPI_PASSWORD }}
+      - name: Run code
+        run: python kenny_loggins_would_be_proud.py
